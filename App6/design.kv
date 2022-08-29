@@ -1,0 +1,118 @@
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            padding: 15, 25
+            spacing: 20, 20
+            Label:
+                text: "Good to see you again"
+                font_size: '25sp'
+            Label:
+                text: "Username"
+                font_size: '20sp'
+            TextInput:
+                id: name_id
+                hint_text: "e.g Safwan"
+            Label:
+                text: "Password"
+                font_size: '20sp'
+            TextInput:
+                id: pass_id
+                password: True
+                hint_text: "e.g Password123"
+            RelativeLayout:
+                Button:
+                    text: "Sign in"
+                    on_press: root.log_in(root.ids.name_id.text, root.ids.pass_id.text)
+                    size_hint: 0.2, 1
+                    pos_hint: {'center_x': 0.5 , 'center_y' : 0.6}
+            Label:
+                id: wrong_id
+                text: ""
+            RelativeLayout:
+                Button:
+                    text: "Don't have account"
+                    background_color: 0.7, 0.7, 1, 1
+                    opacity: 1 if self.state == 'normal' else 0.5
+                    on_press: root.sign_up()
+                    size_hint: 0.2, 1
+                    pos_hint: {'center_x': 0.9 , 'center_y' : 0.8}
+            
+
+<LoginScreen2>
+    GridLayout:
+        cols: 1
+        padding: 30, 30
+        spacing: 30, 30
+        Label:
+            text: "Welcome!"
+            font_size: '25sp'
+        RelativeLayout:
+            ImageButton:
+                source: "logout_hover.png" if self.hovered else "logout_nothover.png"
+                size_hint: 0.5, 0.5
+                pos_hint: {'center_x': 0.9 , 'center_y' : 0.8}
+                on_press: root.log_out()
+        TextInput:
+            id: feeling
+            hint_text: "How do you feel?"
+        Button:
+            text: "Response"
+            on_press: root.response(root.ids.feeling.text)
+        ScrollView:
+            Label:
+                id: quote
+                text: ""
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        padding: 15, 25
+        spacing: 20, 20
+        Label:
+            text: "Sign Up now!"
+            font_size: '25sp'
+        Label:
+            text: "Username"
+            font_size: '20sp'
+        TextInput:
+            id: name_id
+            hint_text: "e.g Safwan"
+        Label:
+            text: "Password"
+            font_size: '20sp'
+        TextInput:
+            id: pass_id
+            hint_text: "e.g Password123"
+        RelativeLayout:
+            Button:
+                text: "Sign Up"
+                on_press: root.new_user(root.ids.name_id.text, root.ids.pass_id.text)
+                size_hint: 0.2, 0.5
+                pos_hint: {'center_x': 0.5 , 'center_y' : 0.6}
+
+<SignUpScreen2>:
+    GridLayout:
+        cols: 1
+        Label:
+            text: "New User has been signed up Successfully!"
+        Button:
+            text: "Return to Login Screen"
+            on_press: root.sus()
+
+<RootWidget>:
+    LoginScreen:
+        name: "login_screen"
+
+    LoginScreen2:
+        name: "login_screen2"
+    
+    SignUpScreen:
+        name: "sign_up_screen"
+
+    SignUpScreen2:
+        name: "sign_up_screen2"
